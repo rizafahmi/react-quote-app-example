@@ -3,6 +3,7 @@ import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { getQuote } from './lib/utility.js';
 import NextButton from './components/NextButton.js';
 import ShareButton from './components/ShareButton.js';
+import Navigation from './components/Navigation.js';
 const Quote = lazy(() => import('./components/Quote.js'));
 
 const App = () => {
@@ -22,17 +23,20 @@ const App = () => {
   const renderLoader = () => <h4>Loading...</h4>;
 
   return (
-    <div
-      style={{ margin: '2em', backgroundColor: '#212529' }}
-      className="nes-container with-title is-dark"
-    >
-      <h1 className="title">Quote of the day</h1>
-      <Suspense fallback={renderLoader()}>
-        <Quote text={text} author={author} />
-      </Suspense>
-      <NextButton title="Next Quote" handleClick={getNextQuote} />
-      <ShareButton text={`${text} --${author}`} />
-    </div>
+    <>
+      <Navigation />
+      <div
+        style={{ margin: '2em', marginTop: '6em', backgroundColor: '#212529' }}
+        className="nes-container with-title is-dark"
+      >
+        <h1 className="title">Quote of the day</h1>
+        <Suspense fallback={renderLoader()}>
+          <Quote text={text} author={author} />
+        </Suspense>
+        <NextButton title="Next Quote" handleClick={getNextQuote} />
+        <ShareButton text={`${text} --${author}`} />
+      </div>
+    </>
   );
 };
 
