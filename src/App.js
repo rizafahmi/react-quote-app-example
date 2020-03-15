@@ -1,6 +1,8 @@
 import React, { useState, useEffect, Suspense, lazy } from 'react';
 
 import { getQuote } from './lib/utility.js';
+import NextButton from './components/NextButton.js';
+import ShareButton from './components/ShareButton.js';
 const Quote = lazy(() => import('./components/Quote.js'));
 
 const App = () => {
@@ -20,28 +22,16 @@ const App = () => {
   const renderLoader = () => <h4>Loading...</h4>;
 
   return (
-    <div style={{ margin: '2em' }} className="nes-container with-title">
+    <div
+      style={{ margin: '2em', backgroundColor: '#212529' }}
+      className="nes-container with-title is-dark"
+    >
       <h1 className="title">Quote of the day</h1>
       <Suspense fallback={renderLoader()}>
         <Quote text={text} author={author} />
       </Suspense>
-      <button
-        className="nes-btn is-success"
-        style={{ marginRight: '1em' }}
-        onClick={getNextQuote}
-      >
-        Next Quote
-      </button>
-      <a
-        href={`https://twitter.com/intent/tweet?text=${text} --${author}`}
-        target="_blank"
-        title="Post this quote on twitter!"
-        rel="noopener noreferrer"
-        className="nes-btn is-primary"
-      >
-        {' '}
-        <i className="nes-icon twitter is-small" /> Share
-      </a>
+      <NextButton title="Next Quote" handleClick={getNextQuote} />
+      <ShareButton text={`${text} --${author}`} />
     </div>
   );
 };
