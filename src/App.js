@@ -1,26 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 
-function App() {
+import { getQuotes, randomizeQuote } from './lib/utility.js';
+const Quote = lazy(() => import('./components/Quote.js'));
+
+const App = () => {
+  const [text, setText] = useState('');
+  const [author, setAuthor] = useState('');
+
+  useEffect(() => {
+    (async () => {
+      const quotes = await getQuotes('https://type.fit/api/quotes');
+      const quote = randomizeQuote(quotes);
+      setText(quote.text);
+      setAuthor(quote.author);
+    })();
+  }, []);
+
+  const renderLoader = () => <h4>Loading...</h4>;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ margin: '2em' }}>
+      <h1>Quoute of the day</h1>
+      <Suspense fallback={renderLoader()}>
+        <Quote text={text} author={author} />
+      </Suspense>
+      <button onClick={() => {}}>Next Quote</button>
     </div>
   );
-}
+};
 
 export default App;
