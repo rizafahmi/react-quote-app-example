@@ -32,13 +32,4 @@ const Navigation = ({ currentUser, handleLogout, handleLogin }) => {
   );
 };
 
-const mapState = (state) => ({
-  currentUser: selectCurrentUser(props)
-});
-const mapDispatch = {
-  handleLogin: LoginUtil.handleLogin,
-  handleLogout: LoginUtil.handleLogout
-};
-connect(mapState, mapDispatch);
-
 export default Navigation;
