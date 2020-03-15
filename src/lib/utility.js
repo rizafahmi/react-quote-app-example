@@ -9,4 +9,9 @@ async function getQuotes(url) {
   return data;
 }
 
-export { getQuotes, randomizeQuote };
+async function getQuote() {
+  const quotes = await getQuotes('https://type.fit/api/quotes');
+  return randomizeQuote(quotes);
+}
+
+export { getQuote };

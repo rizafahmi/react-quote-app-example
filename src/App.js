@@ -1,30 +1,39 @@
 import React, { useState, useEffect, Suspense, lazy } from 'react';
 
-import { getQuotes, randomizeQuote } from './lib/utility.js';
+import { getQuote } from './lib/utility.js';
 const Quote = lazy(() => import('./components/Quote.js'));
 
 const App = () => {
   const [text, setText] = useState('');
   const [author, setAuthor] = useState('');
 
+  const getNextQuote = async () => {
+    const { text, author } = await getQuote();
+    setText(text);
+    setAuthor(author);
+  };
+
   useEffect(() => {
-    (async () => {
-      const quotes = await getQuotes('https://type.fit/api/quotes');
-      const quote = randomizeQuote(quotes);
-      setText(quote.text);
-      setAuthor(quote.author);
-    })();
+    getNextQuote();
   }, []);
 
   const renderLoader = () => <h4>Loading...</h4>;
 
   return (
     <div style={{ margin: '2em' }}>
-      <h1>Quoute of the day</h1>
+      <h1>Quote of the day</h1>
       <Suspense fallback={renderLoader()}>
         <Quote text={text} author={author} />
       </Suspense>
-      <button onClick={() => {}}>Next Quote</button>
+      <button onClick={getNextQuote}>Next Quote</button>
+      <a
+        href={`https://twitter.com/intent/tweet?text=${text} --${author}`}
+        target="_blank"
+        title="Post this quote on twitter!"
+        rel="noopener noreferrer"
+      >
+        Share
+      </a>
     </div>
   );
 };
