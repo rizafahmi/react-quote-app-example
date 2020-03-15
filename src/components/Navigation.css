@@ -1,0 +1,20 @@
+header.sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9;
+  border-bottom: 4px solid #d3d3d3;
+  background-color: #fff;
+}
+
+header.sticky > .container {
+  margin: 0.5em;
+  display: flex;
+  align-items: baseline;
+}
+
+.nav-brand {
+  margin-right: auto;
+  flex: 1;
+}
