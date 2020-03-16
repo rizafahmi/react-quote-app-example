@@ -16,6 +16,9 @@ const Navigation = ({ currentUser, handleLogout, handleLogin }) => {
             </h1>
           </a>
         </div>
+        <div className="menu">
+          <a href="/">Favoirite(3)</a>
+        </div>
         <div className="auth">
           {!loggedIn && (
             <a href="/" onClick={handleLogin}>

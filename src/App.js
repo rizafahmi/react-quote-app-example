@@ -34,6 +34,9 @@ const App = () => {
           <Quote text={text} author={author} />
         </Suspense>
         <NextButton title="Next Quote" handleClick={getNextQuote} />
+        <button className="nes-btn">
+          <i className="nes-icon heart is-small is-empty" /> Favorite
+        </button>
         <ShareButton text={`${text} --${author}`} />
       </div>
     </>

@@ -16,5 +16,8 @@ header.sticky > .container {
 
 .nav-brand {
   margin-right: auto;
+  flex: 3;
+}
+.menu {
   flex: 1;
 }
