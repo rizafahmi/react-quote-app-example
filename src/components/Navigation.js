@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { doLogin, doLogout } from '../actions/auth.js';
-import LoginLogoutMenuItem from './LoginLogoutMenuItem.js';
+import Auth from './Auth.js';
 import './Navigation.css';
 
 const Navigation = ({ currentUser, handleLogout, handleLogin, favCount }) => {
@@ -21,7 +21,18 @@ const Navigation = ({ currentUser, handleLogout, handleLogin, favCount }) => {
           <FavMenuitem />
         </div>
         <div className="auth">
-          <LoginLogoutMenuItem />
+          <Auth
+            renderLoggedOut={(login) => (
+              <a href="#" onClick={login}>
+                Login
+              </a>
+            )}
+            renderLoggedIn={(user, logout) => (
+              <a href="#" onClick={logout}>
+                Logout
+              </a>
+            )}
+          />
         </div>
       </div>
     </header>

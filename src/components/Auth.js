@@ -1,6 +1,6 @@
 import React from 'react';
 
-const LoginLogoutMenuItem = ({
+const Auth = ({
   currentUser,
   handleLogout,
   handleLogin,
@@ -20,4 +20,4 @@ const mapDispatch = {
 };
 connect(mapState, mapDispatch);
 
-export default connect(mapState, mapDispatch)(LoginLogoutMenuItem);
+export default connect(mapState, mapDispatch)(Auth);
