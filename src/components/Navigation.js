@@ -3,7 +3,7 @@ import React from 'react';
 import { doLogin, doLogout } from '../actions/auth.js';
 import './Navigation.css';
 
-const Navigation = ({ currentUser, handleLogout, handleLogin }) => {
+const Navigation = ({ currentUser, handleLogout, handleLogin, favCount }) => {
   const loggedIn = !!currentUser;
 
   return (
@@ -16,9 +16,7 @@ const Navigation = ({ currentUser, handleLogout, handleLogin }) => {
             </h1>
           </a>
         </div>
-        <div className="menu">
-          <a href="/">Favoirite(3)</a>
-        </div>
+        <div className="menu">{loggedIn && <a href="/">Favoirite({favCount})</a>}</div>
         <div className="auth">
           {!loggedIn && (
             <a href="/" onClick={handleLogin}>
@@ -37,7 +35,8 @@ const Navigation = ({ currentUser, handleLogout, handleLogin }) => {
 };
 
 const mapState = (state) => ({
-  currentUser: state.currentUser
+  currentUser: state.currentUser,
+  favCount: state.favorites.length
 });
 const mapDispatch = {
   handleLogin: () => dispatch(doLogin()),
