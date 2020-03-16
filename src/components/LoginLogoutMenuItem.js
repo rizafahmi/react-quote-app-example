@@ -1,15 +1,15 @@
 import React from 'react';
 
-const LoginLogoutMenuItem = ({ currentUser, handleLogout, handleLogin }) =>
-  currentUser ? (
-    <a href="#" onClick={handleLogout}>
-      Logout
-    </a>
-  ) : (
-    <a href="#" onClick={handleLogin}>
-      Login
-    </a>
-  );
+const LoginLogoutMenuItem = ({
+  currentUser,
+  handleLogout,
+  handleLogin,
+  renderLoggedIn,
+  renderLoggedOut
+}) =>
+  currentUser
+    ? renderLoggedIn(currentUser, handleLogout)
+    : renderLoggedOut(handleLogin);
 
 const mapState = (state) => ({
   currentUser: state.currentUser
