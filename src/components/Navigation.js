@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { doLogin, doLogout } from '../actions/auth.js';
 import './Navigation.css';
 
 const Navigation = ({ currentUser, handleLogout, handleLogin }) => {
@@ -33,12 +34,12 @@ const Navigation = ({ currentUser, handleLogout, handleLogin }) => {
 };
 
 const mapState = (state) => ({
-  currentUser: selectCurrentUser(props)
+  currentUser: state.currentUser
 });
 const mapDispatch = {
-  handleLogin: LoginUtil.handleLogin,
-  handleLogout: LoginUtil.handleLogout
+  handleLogin: () => dispatch(doLogin()),
+  handleLogout: () => dispatch(doLogout())
 };
 connect(mapState, mapDispatch);
 
-export default Navigation;
+export default connect(mapState, mapDispatch)(Navigation);
