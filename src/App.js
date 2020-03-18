@@ -38,7 +38,7 @@ const App = () => {
         <Suspense fallback={renderLoader()}>
           <Quote text={text} author={author} />
         </Suspense>
-        <NextButton />
+        <NextButton title="&gt; Next Quote" handleClick={getNextQuote} />
         <FavoriteButton handleClick={addToFavorite} />
         <ShareButton text={`${text} --${author}`} />
       </div>

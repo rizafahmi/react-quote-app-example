@@ -22,7 +22,7 @@ const Navigation = ({ favorites }) => {
           <Auth
             renderLoggedOut={(login) => (
               <a href="#" onClick={login}>
-                Logout
+                Login
               </a>
             )}
             renderLoggedIn={(user, logout) => (
