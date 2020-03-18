@@ -1,17 +1,11 @@
 import React from 'react';
 
-const ShareButton = ({ text }) => {
+const FavoriteButton = ({ handleClick, text }) => {
   return (
-    <a
-      href={`https://twitter.com/intent/tweet?text=${text}`}
-      target="_blank"
-      title="Post this quote on twitter!"
-      rel="noopener noreferrer"
-      className="nes-btn is-primary"
-    >
-      <i className="nes-icon twitter is-small" /> Share
-    </a>
+    <button className="nes-btn" onClick={handleClick}>
+      <i className="nes-icon heart is-small is-empty" /> Favorite
+    </button>
   );
 };
 
-export default ShareButton;
+export default FavoriteButton;

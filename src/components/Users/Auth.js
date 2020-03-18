@@ -11,13 +11,4 @@ const Auth = ({
     ? renderLoggedIn(currentUser, handleLogout)
     : renderLoggedOut(handleLogin);
 
-const mapState = (state) => ({
-  currentUser: state.currentUser
-});
-const mapDispatch = {
-  handleLogin: () => dispatch(doLogin()),
-  handleLogout: () => dispatch(doLogout())
-};
-connect(mapState, mapDispatch);
-
-export default connect(mapState, mapDispatch)(Auth);
+export default Auth;

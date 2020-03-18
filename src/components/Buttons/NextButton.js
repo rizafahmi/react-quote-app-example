@@ -1,17 +1,17 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const ShareButton = ({ text }) => {
+const NextButton = ({ handleClick, title }) => {
   return (
-    <a
-      href={`https://twitter.com/intent/tweet?text=${text}`}
-      target="_blank"
-      title="Post this quote on twitter!"
-      rel="noopener noreferrer"
-      className="nes-btn is-primary"
-    >
-      <i className="nes-icon twitter is-small" /> Share
-    </a>
+    <button className="nes-btn is-success" onClick={handleClick}>
+      {title}
+    </button>
   );
 };
 
-export default ShareButton;
+NextButton.propTypes = {
+  title: PropTypes.string.isRequired,
+  handleClick: PropTypes.func.isRequired
+};
+
+export default NextButton;

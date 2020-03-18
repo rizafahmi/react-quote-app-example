@@ -1,12 +1,10 @@
 import React from 'react';
 
-import { doLogin, doLogout } from '../actions/auth.js';
-import Auth from './Auth.js';
+import Auth from '../Users/Auth.js';
+import FavMenuItem from './FavMenuItem.js';
 import './Navigation.css';
 
-const Navigation = ({ currentUser, handleLogout, handleLogin, favCount }) => {
-  const loggedIn = !!currentUser;
-
+const Navigation = ({ favorites }) => {
   return (
     <header className="sticky">
       <div className="container">
@@ -18,13 +16,13 @@ const Navigation = ({ currentUser, handleLogout, handleLogin, favCount }) => {
           </a>
         </div>
         <div className="menu">
-          <FavMenuitem />
+          <FavMenuItem totalFavorite={favorites.length} />
         </div>
         <div className="auth">
           <Auth
             renderLoggedOut={(login) => (
               <a href="#" onClick={login}>
-                Login
+                Logout
               </a>
             )}
             renderLoggedIn={(user, logout) => (
@@ -39,14 +37,4 @@ const Navigation = ({ currentUser, handleLogout, handleLogin, favCount }) => {
   );
 };
 
-const mapState = (state) => ({
-  currentUser: state.currentUser,
-  favCount: state.favorites.length
-});
-const mapDispatch = {
-  handleLogin: () => dispatch(doLogin()),
-  handleLogout: () => dispatch(doLogout())
-};
-connect(mapState, mapDispatch);
-
-export default connect(mapState, mapDispatch)(Navigation);
+export default Navigation;
