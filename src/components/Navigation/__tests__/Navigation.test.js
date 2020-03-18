@@ -15,5 +15,5 @@ test('render Navigation bar', () => {
   expect(header).toBeDefined();
   expect(navContainer).not.toBeNull();
   expect(navBrand).not.toBeNull();
-  expect(h1.textContent).toMatch('Quotation.app');
+  expect(h1.textContent).toMatch('Quote.app');
 });
